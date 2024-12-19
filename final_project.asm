@@ -49,7 +49,7 @@ LITUP:
 
   MOV R0, 027H
   MOV A, @R0
-  ANL A, 025H
+  ANL A, 026H
   MOV P0, A
   MOV P1, 026H
 
