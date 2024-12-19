@@ -50,6 +50,8 @@ LITUP:
   MOV R0, 027H // pointer
   MOV A, @R0
   ANL A, 026H // row light up
+  MOV P0, #00000000B
+  MOV P1, #00000000B
   MOV P0, 025H // column
   MOV P1, A
 
