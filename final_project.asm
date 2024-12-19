@@ -65,7 +65,7 @@ COL4:
 	ADD A, #3 
   MOV 032H, A
   JMP KEYBOARDEVENT
-KEYBOARDEVERT:
+KEYBOARDEVENT:
   // TODO: What to do when keyboard pressed
   JMP KEYBOARD
 
