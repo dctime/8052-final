@@ -8,7 +8,11 @@ START:
 INITCURSOR:
   // cursor column #00000001B
   MOV 030H, #00000001B
+  // cursor row
   MOV 031H, #00000001B
+  // cursor timer
+  MOV 034H, #235
+  MOV 035H, #3
 TIMER0SET:
   // MOD 1 
   // TMOD.1 0
@@ -250,6 +254,36 @@ ENDOFLOOP:
   JMP LOOP
 
 ONEMS:
+CURSORBLINK:
+  DJNZ 034H, CURSORBLINKRETI
+  MOV 034H, #236
+  DJNZ 035H, CURSORBLINK
+  // blink!
+  // target column
+  MOV R0, #01FH
+  MOV A, 030H
+CURSORBLINKPOINTERLOCATING:
+  INC R0
+  RR A
+  CJNE A, #00000001B, CURSORBLINKPOINTERLOCATING
+  // pointer ready
+  // set the target bit to zero
+  MOV A, @R0
+  MOV 036H, A // processing data
+  MOV A, 31H
+  ANL A, 036H
+  MOV @R0, A
+
+  // invert get the bit and paste the bit  
+  MOV A, 036H
+  CPL A
+  ANL A, 031H
+  ORL A, @R0
+  MOV @R0, A
+  
+  MOV 035H, #4
+  JMP CURSORBLINKRETI
+CURSORBLINKRETI:
   RETI
 
 // ----- cursor call -----
