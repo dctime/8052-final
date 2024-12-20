@@ -255,9 +255,12 @@ ENDOFLOOP:
 
 ONEMS:
 CURSORBLINK:
+  PUSH 080H // R0
+  PUSH 0E0H // A
+
   DJNZ 034H, CURSORBLINKRETI
   MOV 034H, #236
-  DJNZ 035H, CURSORBLINK
+  DJNZ 035H, CURSORBLINKRETI
   // blink!
   // target column
   MOV R0, #01FH
@@ -290,6 +293,9 @@ CURSORBLINKRETI:
   // 1ms
   MOV TH0, #253
   MOV TL0, #20
+
+  POP 0E0H // A
+  POP 080H // R0
   RETI
 
 // ----- cursor call -----
