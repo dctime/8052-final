@@ -13,6 +13,8 @@ INITCURSOR:
   // cursor timer
   MOV 034H, #236
   MOV 035H, #4
+INITKEYBOARD:
+  CLR 050H // keyboard trigger locker
 TIMER0SET:
   // MOD 1 
   // TMOD.1 0
@@ -146,6 +148,7 @@ ROW4:
 	CJNE A, #0FH, COL1
 NOTHINGPRESSED:
 	JMP ENDOFLOOP // 重新從第一行偵測
+  CLR 050H
 // 當偵測到時
 COL1:
 	CJNE A, #0EH, COL2 // 00001110
@@ -172,6 +175,11 @@ COL4:
   MOV 032H, A
   JMP KEYBOARDEVENT
 KEYBOARDEVENT:
+  JNB 050H, KEYBOARDUNLOCKED
+  // locked
+  JMP AFTERKEYBOARD
+KEYBOARDUNLOCKED:
+  SETB 050H // keyboard locked
   MOV A, 032H // last time keyboard index
   CJNE A, #0, KEYBOARDNOT0 // left up
   // 0
