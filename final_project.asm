@@ -25,8 +25,8 @@ TIMER0SET:
   // TMOD.3 Gate 0
   ANL TMOD, #11110111B
   // 1ms
-  MOV TH0, #3
-  MOV TL0, #235
+  MOV TH0, #253
+  MOV TL0, #20
 INTERRUPTSETUP:
   // Enable All
   SETB 0AFH
@@ -288,8 +288,8 @@ CURSORBLINKPOINTERLOCATING:
 CURSORBLINKRETI:
   // Reset Timer
   // 1ms
-  MOV TH0, #3
-  MOV TL0, #235
+  MOV TH0, #253
+  MOV TL0, #20
   RETI
 
 // ----- cursor call -----
