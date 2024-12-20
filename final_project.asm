@@ -284,6 +284,10 @@ CURSORBLINKPOINTERLOCATING:
   MOV 035H, #4
   JMP CURSORBLINKRETI
 CURSORBLINKRETI:
+  // Reset Timer
+  // 1ms
+  MOV TH0, #3
+  MOV TL0, #235
   RETI
 
 // ----- cursor call -----
