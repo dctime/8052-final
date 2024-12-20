@@ -272,6 +272,7 @@ CURSORBLINKPOINTERLOCATING:
   MOV A, @R0
   MOV 036H, A // processing data
   MOV A, 31H
+  CPL A
   ANL A, 036H
   MOV @R0, A
 
