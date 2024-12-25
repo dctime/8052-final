@@ -629,7 +629,7 @@ ENDCYCLE:
   MOV 024H, 02FH
 
   // reset timer
-  MOV 03BH, #4
+  MOV 03EH, #4
 ENDCYCLENOUPDATE:
   POP 00H // R0
   POP 0E0H // A
