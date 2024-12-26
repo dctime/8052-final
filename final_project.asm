@@ -46,8 +46,8 @@ TIMER1SET:
   CLR TF1
   // Low C
   // Buzzer Frequency init value
-  MOV 040H, #242
-  MOV 041H, #8
+  MOV 040H, #241
+  MOV 041H, #22
   MOV TH1, 040H
   MOV TL1, 041H
   // Enable Timer
@@ -314,17 +314,18 @@ BUZZERFLIP:
   RETI
 
 BUZZERTABLE:
-  DB 242, 8
-  DB 242, 228
-  DB 243, 169
-  DB 244, 110
-  DB 245, 203
-  DB 246, 102
-  DB 246, 254
-  DB 247, 146
-  DB 248, 22
-  DB 248, 149
-  DB 249, 16
+  DB 241, 22
+  DB 241, 242
+  DB 242, 182
+  DB 243, 122
+  DB 244, 41
+  DB 244, 214
+  DB 245, 112
+  DB 246, 8
+  DB 246, 155
+  DB 247, 30
+  DB 247, 157
+  DB 248, 23
 
 // --- buzzer callables --
 TURNAINTOFREQUENCY:
