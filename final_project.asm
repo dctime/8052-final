@@ -30,8 +30,8 @@ TIMER0SET:
   // TMOD.3 Gate 0
   ANL TMOD, #11110111B
   // 1ms
-  MOV TH0, #253
-  MOV TL0, #20
+  MOV TH0, #252
+  MOV TL0, #23
   
 TIMER1SET:
   // Mode 1
@@ -754,8 +754,8 @@ ENDCYCLENOUPDATE:
 ENDONEMS:
   // Reset Timer
   // 1ms
-  MOV TH0, #253
-  MOV TL0, #20
+  MOV TH0, #252
+  MOV TL0, #23
   RETI
 
 END
