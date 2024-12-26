@@ -2,6 +2,8 @@ ORG 0000H
 JMP START
 ORG 000BH
 JMP ONEMS
+ORG 001BH
+JMP BUZZERFLIP
 ORG 0050H
 
 START:
@@ -28,15 +30,40 @@ TIMER0SET:
   // TMOD.3 Gate 0
   ANL TMOD, #11110111B
   // 1ms
-  MOV TH0, #253
-  MOV TL0, #20
+  MOV TH1, #253
+  MOV TL1, #20
+  
+TIMER1SET:
+  // Mode 1
+  // TMOD.5 = 0
+  // TMOD.4 = 1
+  ANL TMOD, #11011111B
+  ORL TMOD, #00010000B
+  // TMOD.6 0 Timer Mode
+  ANL TMOD, #10111111B
+  // TMOD.7 0 Gate
+  ANL TMOD, #01111111B
+  CLR TF1
+  // Low C
+  // Buzzer Frequency init value
+  MOV 040H, #242
+  MOV 041H, #8
+  MOV TH1, 040H
+  MOV TL1, 041H
+  // Enable Timer
+  SETB TR1
+
 INTERRUPTSETUP:
-  // Enable All
-  SETB 0AFH
   // TF0 Enable
   SETB 0A9H
   // TF0 Low Priority
   CLR 0B9H
+  // TF1 Enable
+  SETB 0ABH
+  // TF1 High Priority
+  SETB 0BBH
+  // Enable All
+  SETB 0AFH
 
 MODEEDIT:
 INITCURSOR:
@@ -276,6 +303,12 @@ LEDDELAY:
 LEDDELAY1:
 	DJNZ 028H, LEDDELAY1
 	RET
+
+BUZZERFLIP:
+  CPL 0B7H
+  MOV TH1, 040H
+  MOV TL1, 041H
+  RETI
 
 ONEMS:
 // this will modify display memory
