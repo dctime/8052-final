@@ -47,7 +47,7 @@ TIMER1SET:
   // Low C
   // Buzzer Frequency init value
   MOV 040H, #241
-  MOV 041H, #22
+  MOV 041H, #242
   MOV TH1, 040H
   MOV TL1, 041H
   // Enable Timer
