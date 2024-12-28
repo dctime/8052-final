@@ -913,6 +913,7 @@ ENDONEMS:
 
 // --- global function ---
 USEATOCOMMANDLCD:
+  MOV P2, #00000000
 	MOV P2, A
   // set mode
   ANL 080H, #10011111B // P0 write command
@@ -923,6 +924,7 @@ USEATOCOMMANDLCD:
 	RET
 
 USEASETTINGDATA:
+  MOV P2, #00000000
 	MOV P2, A
   // set mode write into ram (ddram or cgram)
   ORL 080H, #00100000B
