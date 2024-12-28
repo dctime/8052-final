@@ -336,7 +336,7 @@ LEDDELAY1:
 	RET
 
 BUZZERFLIP:
-  CPL 0B7H
+  CPL 097H
   MOV TH1, 040H
   MOV TL1, 041H
   RETI
@@ -915,8 +915,8 @@ ENDONEMS:
 
 // --- global function ---
 USEATOCOMMANDLCD:
-  MOV P2, #00000000B
-	MOV P2, A
+  MOV P3, #00000000B
+	MOV P3, A
   // set mode
   ANL 080H, #10011111B // P0 write command
 	ORL 080H, #10000000B // enable
@@ -926,8 +926,8 @@ USEATOCOMMANDLCD:
 	RET
 
 USEASETTINGDATA:
-  MOV P2, #00000000B
-	MOV P2, A
+  MOV P3, #00000000B
+	MOV P3, A
   // set mode write into ram (ddram or cgram)
   ORL 080H, #00100000B
   ANL 080H, #10111111B
