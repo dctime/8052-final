@@ -71,6 +71,8 @@ LCDSHOWMODEDIT:
   CALL USEATOCOMMANDLCD
   MOV A, #00001111B // DCB
   CALL USEATOCOMMANDLCD
+  MOV A, #00000110B // AC setting and screen
+  CALL USEATOCOMMANDLCD
   MOV A, #00000001B
   CALL USEATOCOMMANDLCD
   MOV A, #10000000B // set ddram memory pointer to 0
@@ -913,7 +915,7 @@ ENDONEMS:
 
 // --- global function ---
 USEATOCOMMANDLCD:
-  MOV P2, #00000000
+  MOV P2, #00000000B
 	MOV P2, A
   // set mode
   ANL 080H, #10011111B // P0 write command
@@ -924,7 +926,7 @@ USEATOCOMMANDLCD:
 	RET
 
 USEASETTINGDATA:
-  MOV P2, #00000000
+  MOV P2, #00000000B
 	MOV P2, A
   // set mode write into ram (ddram or cgram)
   ORL 080H, #00100000B
