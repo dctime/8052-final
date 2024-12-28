@@ -319,7 +319,7 @@ LITUP:
   MOV A, P1
   ANL A, #10000000B
   ORL A, 0F0H // B
-  ; MOV P1, A
+  MOV P1, A
 
   POP 0E0H
   POP 00H
