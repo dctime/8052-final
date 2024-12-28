@@ -314,11 +314,11 @@ LITUP:
   MOV P0, 025H // column
 
   // MOV P1, A Filter P1.7
-  ; ANL A, #01111111B
-  ; MOV B, A
-  ; MOV A, P1
-  ; ANL A, #10000000B
-  ; ORL A, 0F0H // B
+  ANL A, #01111111B
+  MOV B, A
+  MOV A, P1
+  ANL A, #10000000B
+  ORL A, 0F0H // B
   ; MOV P1, A
 
   POP 0E0H
