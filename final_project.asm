@@ -274,7 +274,7 @@ SCANLED:
 INITSCAN:
   // init the led so that it will light up
   MOV P0, #00000000B // column MSB right 
-  MOV P1, #00000000B // row MSB down
+  ANL 090H, #10000000B // row MSB down // P1
   MOV 027H, #020H // column data pointer
 	MOV 025H, #00000001B // column light up
   MOV 026H, #00000001B // row light up
@@ -312,6 +312,13 @@ LITUP:
   ANL A, 026H // row light up
   
   MOV P0, 025H // column
+
+  // MOV P1, A Filter P1.7
+  ANL A, #01111111B
+  MOV B, A
+  MOV A, P1
+  ANL A, #10000000B
+  ORL A, 0F0H // B
   MOV P1, A
 
   POP 0E0H
@@ -326,7 +333,7 @@ AFTERLIT:
   POP 0E0H
   CALL LEDDELAY
   MOV P0, #00000000B
-  MOV P1, #00000000B
+  ANL 090H, #10000000B // P1
 	JMP CHECKROWLIGHTUP
 
 LEDDELAY:
