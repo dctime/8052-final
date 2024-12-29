@@ -259,7 +259,7 @@ ENDOFLOOPGAMEOFLIFE:
 SCANLED:
 INITSCAN:
   // init the led so that it will light up
-  MOV P0, #00000000B // column MSB right 
+  ANL 080H, #11100000B // column MSB right 
   ANL 090H, #10000000B // row MSB down // P1
   MOV 027H, #020H // column data pointer
 	MOV 025H, #00000001B // column light up
