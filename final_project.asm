@@ -50,8 +50,8 @@ TIMER1SET:
   MOV 041H, #242
   MOV TH1, 040H
   MOV TL1, 041H
-  // Enable Timer
-  SETB TR1
+  // Disable Timer
+  CLR TR1
 
 INTERRUPTSETUP:
   // TF0 Enable
@@ -171,6 +171,7 @@ KEYBOARDNOT2:
   CJNE A, #3, KEYBOARDNOT3
   // 3
   // test - set C High
+  SETB TR1
   MOV A, #7
   CALL TURNAINTOFREQUENCY
   JMP AFTERKEYBOARD
