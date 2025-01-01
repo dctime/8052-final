@@ -96,7 +96,7 @@ INITCURSOR:
   // cursor row
   MOV 031H, #00000001B
   // cursor timer
-  MOV 034H, #236
+  MOV 034H, #250
   MOV 035H, #4
   SETB 051H // blink enable
 INITKEYBOARD:
@@ -616,7 +616,7 @@ CURSORBLINK:
   JNB 051H,  CURSORBLINKRETI
 
   DJNZ 034H, CURSORBLINKRETI
-  MOV 034H, #236
+  MOV 034H, #250
   DJNZ 035H, CURSORBLINKRETI
   // blink!
   // target column
